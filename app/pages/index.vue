@@ -213,7 +213,7 @@ function playPause() {
     </div>
     <section class="max-w-[85rem] mx-auto pt-14">
       <h2 class="font-bold px-4 uppercase text-4xl lg:text-4xl mb-10">
-        Sectores we
+        Sectors we
         <span class="underline decoration-[var(--focus-yellow)] decoration-4 underline-offset-8">serve</span>
       </h2>
       <LazyExpanderMenuCopy />
