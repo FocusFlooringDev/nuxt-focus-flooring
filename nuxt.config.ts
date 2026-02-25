@@ -1,6 +1,8 @@
 import svgLoader from "vite-svg-loader";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const isProduction = process.env.NODE_ENV === "production";
+
 export default defineNuxtConfig({
   compatibilityDate: "2024-10-04",
   future: {
@@ -86,7 +88,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/scripts",
     "@nuxtjs/critters",
-    "@nuxtjs/sitemap",
+    ...(isProduction ? ["@nuxtjs/sitemap"] : []),
   ],
 
   nitro: {

@@ -1,6 +1,11 @@
 import Airtable from 'airtable'
 
 export default defineEventHandler(async () => {
+	if (!process.env.AIRTABLE_TOKEN) {
+		console.error('Missing AIRTABLE_TOKEN')
+		return []
+	}
+
 	Airtable.configure({ apiKey: process.env.AIRTABLE_TOKEN })
 	const base = Airtable.base('appX4S4Y72F1Ppq2Q')
 

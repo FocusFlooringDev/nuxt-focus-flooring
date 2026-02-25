@@ -1,8 +1,5 @@
 import Airtable from 'airtable'
 
-Airtable.configure({ apiKey: process.env.AIRTABLE_TOKEN })
-var base = Airtable.base('appv2XIRixefc5mI3')
-
 type image = {
 	id: string
 	width: number
@@ -27,6 +24,14 @@ type Project = {
 }
 
 export default defineEventHandler(async () => {
+	if (!process.env.AIRTABLE_TOKEN) {
+		console.error('Missing AIRTABLE_TOKEN')
+		return []
+	}
+
+	Airtable.configure({ apiKey: process.env.AIRTABLE_TOKEN })
+	const base = Airtable.base('appv2XIRixefc5mI3')
+
 	
 	const projects = base('Table 1')
 		.select({

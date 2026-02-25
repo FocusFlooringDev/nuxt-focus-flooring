@@ -1,8 +1,5 @@
 import Airtable from 'airtable'
 
-Airtable.configure({ apiKey: process.env.AIRTABLE_FORM })
-var base = Airtable.base('appMDLS774dmy6UBH')
-
 type AirtableError = {
 	error: string
 	message: string
@@ -11,6 +8,16 @@ type AirtableError = {
 
 export default defineFormActions({
 	default: async (event) => {
+		if (!process.env.AIRTABLE_FORM) {
+			throw createError({
+				statusCode: 500,
+				statusMessage: 'Server misconfiguration: missing AIRTABLE_FORM'
+			})
+		}
+
+		Airtable.configure({ apiKey: process.env.AIRTABLE_FORM })
+		const base = Airtable.base('appMDLS774dmy6UBH')
+
 		const body = await readBody(event)
 
 		try {
