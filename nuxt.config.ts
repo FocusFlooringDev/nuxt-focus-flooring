@@ -58,7 +58,7 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [
-      svgLoader(), // https://github.com/jpkleemans/vite-svg-loader#readme
+      svgLoader(),
     ],
   },
 
@@ -79,16 +79,13 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxt/ui",
     "@formkit/auto-animate/nuxt",
-    "@nuxtjs/google-fonts",
     "@nuxt/icon",
     "@nuxtjs/robots",
-    "@nuxt/image-edge",
     "@nuxtjs/tailwindcss",
     "nuxt-schema-org",
     "@nuxt/image",
     "@nuxt/scripts",
-    "@nuxtjs/critters",
-    ...(isProduction ? ["@nuxtjs/sitemap"] : []),
+    "@nuxtjs/sitemap",
   ],
 
   nitro: {
@@ -120,12 +117,6 @@ export default defineNuxtConfig({
     preference: "light",
   },
 
-  googleFonts: {
-    display: "swap",
-    families: {
-      Inter: [400, 700],
-    },
-  },
   $production: {
     scripts: {
       registry: {
@@ -134,10 +125,6 @@ export default defineNuxtConfig({
         // }
       },
     },
-  },
-
-  build: {
-    transpile: ["@nuxt/image"],
   },
 
   postcss: {
