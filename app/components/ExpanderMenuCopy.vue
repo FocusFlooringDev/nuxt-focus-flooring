@@ -49,7 +49,7 @@
 		{
 			name: 'K–12 Education',
 			icon: 'i-tabler-backpack',
-			to: '/portfolio',
+			to: '/portfolio?category=Education',
 			image: '/sectors/sumner-courtyard.jpg',
 			focus: 'center 55%',
 			alt: 'School courtyard walkway between blue and white classroom buildings'

@@ -76,14 +76,6 @@
 				>
 					See our process
 				</UButton>
-				<UButton
-					to="/contact/general-contact"
-					variant="outline"
-					color="focusyellow"
-					class="hidden lg:inline-flex hover:text-midnight-950"
-				>
-					Contact us
-				</UButton>
 			</template>
 			<UButton
 				href="https://envision-cs.com/store/Focus-Flooring-c156562751"
@@ -105,14 +97,6 @@
 					block
 				>
 					See our process
-				</UButton>
-				<UButton
-					to="/contact/general-contact"
-					variant="outline"
-					color="focusyellow"
-					block
-				>
-					Contact us
 				</UButton>
 			</div>
 		</template>
