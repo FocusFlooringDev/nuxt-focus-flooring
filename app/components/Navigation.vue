@@ -10,6 +10,10 @@
 		}
 	}
 
+	const route = useRoute()
+	// On the home page the header sits on top of the photo slideshow
+	const isHome = computed(() => route.path === '/')
+
 	const links = [
 		{
 			label: 'Our History',
@@ -49,7 +53,10 @@
 </script>
 
 <template>
-	<UHeader :links="links" class="reletive">
+	<UHeader
+		:links="links"
+		:class="isHome ? '!absolute inset-x-0 top-0 !bg-transparent backdrop-blur-none' : ''"
+	>
 		<template #logo>
 			<NuxtImg
 				src="/Focus_Flooring_logo_white.svg"
@@ -60,6 +67,24 @@
 			/>
 		</template>
 		<template #right>
+			<template v-if="isHome">
+				<UButton
+					to="/our-process"
+					variant="outline"
+					color="focusyellow"
+					class="hidden lg:inline-flex hover:text-midnight-950"
+				>
+					See our process
+				</UButton>
+				<UButton
+					to="/contact/general-contact"
+					variant="outline"
+					color="focusyellow"
+					class="hidden lg:inline-flex hover:text-midnight-950"
+				>
+					Contact us
+				</UButton>
+			</template>
 			<UButton
 				href="https://envision-cs.com/store/Focus-Flooring-c156562751"
 				@click="handleBuy(event)"
@@ -72,6 +97,24 @@
 		</template>
 		<template #panel>
 			<UNavigationTree :links="links" />
+			<div v-if="isHome" class="mt-6 flex flex-col gap-3">
+				<UButton
+					to="/our-process"
+					variant="outline"
+					color="focusyellow"
+					block
+				>
+					See our process
+				</UButton>
+				<UButton
+					to="/contact/general-contact"
+					variant="outline"
+					color="focusyellow"
+					block
+				>
+					Contact us
+				</UButton>
+			</div>
 		</template>
 	</UHeader>
 </template>

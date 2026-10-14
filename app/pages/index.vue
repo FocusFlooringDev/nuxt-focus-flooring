@@ -86,47 +86,13 @@ const whatWeDo = [
       'From transitions to stair treads, flooring accessories are specialty products that will tie together your design and product needs.'
   }
 ]
-
-const vid = ref<HTMLVideoElement | null>(null)
-
-function playPause() {
-  if (!vid.value) return
-  if (vid.value.paused) {
-    vid.value.play()
-  } else {
-    vid.value.pause()
-  }
-}
 </script>
 
 <template>
   <header>
-    <HomeHero>
-      <template v-slot:header>
-        <span>Eliminating your risk</span> through our process
-      </template>
-      <template v-slot:actions>
-        <div class="actions justify-center flex flex-col sm:flex-row">
-          <UButton to="/contact/general-contact" class="text-midnight-950" color="focusyellow">Contact us
-          </UButton>
-          <UButton to="/our-process" class="hover:text-midnight-950" variant="outline" color="focusyellow">See
-            our process</UButton>
-        </div>
-      </template>
-    </HomeHero>
+    <HeroSlideshow />
   </header>
   <main id="main" class="main">
-    <div class="max-w-4xl -mt-24 mx-auto z-40 relative" @click="playPause">
-      <video poster="/poster.webp" controlslist="nofullscreen nodownload" class="relative" ref="vid" preload="none">
-        <source src="https://iz5hjhzjql5fyivm.public.blob.vercel-storage.com/Focus%20Flooring_%20Our%20Story.mp4"
-          type="video/webm" />
-        <source src="https://iz5hjhzjql5fyivm.public.blob.vercel-storage.com/Focus%20Flooring_%20Our%20Story.mp4"
-          type="video/mp4" />
-
-        Your browser does not support the video tag.
-      </video>
-    </div>
-
     <div class="max-w-[85rem] px-4 pt-20 pb-10 sm:px-6 lg:px-8 lg:py-14 mx-auto min-h-[500px]">
       <div class="md:grid md:grid-cols-2 md:items-center md:gap-12">
         <div>
@@ -143,8 +109,8 @@ function playPause() {
               </h2>
               <div class="space-y-4">
                 <p>
-                  At Focus Flooring, we offer advanced solutions in commercial
-                  flooring and wall tile.
+                  Advanced processes producing consistent solutions in
+                  commercial flooring.
                 </p>
                 <p>
                   We have disciplined our flooring processes to focus on the
@@ -152,7 +118,7 @@ function playPause() {
                   quality service they can count on.
                 </p>
                 <p>
-                  Focus Flooring is a minority-owned firm based out of Tampa,
+                  Focus Flooring is based out of Tampa,
                   Florida with a
                   <strong>guarantee to eliminate your risk through our internal
                     processes.</strong>
@@ -212,7 +178,7 @@ function playPause() {
       </div>
     </div>
     <section class="max-w-[85rem] mx-auto pt-14">
-      <h2 class="font-bold px-4 uppercase text-4xl lg:text-4xl mb-10">
+      <h2 class="font-bold px-4 text-4xl lg:text-4xl mb-10">
         Sectors we
         <span class="underline decoration-[var(--focus-yellow)] decoration-4 underline-offset-8">serve</span>
       </h2>
@@ -230,14 +196,6 @@ function playPause() {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
-}
-
-.actions {
-  gap: 1rem;
-}
-
-video {
-  width: 100%;
 }
 
 .pic {

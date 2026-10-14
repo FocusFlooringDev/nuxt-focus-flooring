@@ -105,6 +105,22 @@
 
 	<UPage>
 		<UPageBody id="main">
+			<ULandingSection>
+				<video
+					class="w-full aspect-video bg-[var(--midnight)]"
+					controls
+					preload="metadata"
+					poster="/poster.webp"
+					controlslist="nodownload"
+					aria-label="Focus Flooring: Our Story"
+				>
+					<source
+						src="https://iz5hjhzjql5fyivm.public.blob.vercel-storage.com/Focus%20Flooring_%20Our%20Story.mp4"
+						type="video/mp4"
+					/>
+					Your browser does not support the video tag.
+				</video>
+			</ULandingSection>
 			<ULandingSection
 				title="Three Uniques"
 				description="Focus Flooring, a minority-owned enterprise, excels in competing
