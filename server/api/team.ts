@@ -1,5 +1,9 @@
 import Airtable from 'airtable'
 
+// Team members hidden from the site even if Airtable still marks them "live".
+// Remove a name once their Airtable row is updated.
+const hiddenFirstNames = ['shane']
+
 export default defineEventHandler(async () => {
 	if (!process.env.AIRTABLE_TOKEN) {
 		console.error('Missing AIRTABLE_TOKEN')
@@ -14,6 +18,12 @@ export default defineEventHandler(async () => {
 
 		const teamMembers = records
 			.filter((r) => r.fields.status === 'live')
+			.filter(
+				(r) =>
+					!hiddenFirstNames.includes(
+						String(r.get('firstName') ?? '').trim().toLowerCase()
+					)
+			)
 			.map((r) => {
 				const img = r.fields.image?.[0]?.url.replace(/^.{35}/, "");
 				return {
