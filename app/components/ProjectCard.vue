@@ -41,7 +41,6 @@
 			sizes: '150px sm:225px md:350px'
 		}"
 		:title="name"
-		description="As Envision Flooring"
 		:ui="{
 			title:
 				'text-gray-900 dark:text-white text-xl whitespace-normal font-semibold  group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200',
