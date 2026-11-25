@@ -184,6 +184,7 @@ Use only these colors. Any other color is unauthorized. Never change or adjust t
   - Projects can also be added in code: `server/data/portfolio.ts` lists projects that are not in Airtable (with their photo galleries) and extra gallery photos for Airtable projects. Gallery photos live in `public/portfolio/<project>/01.jpg, 02.jpg, ...` (01 is the cover). Only add completed projects with approved final photos; never show cost or quantities.
   - Slideshow photos link to their project with `/portfolio?project=<slug>`, which opens that project's pop-up.
   - Exception: nobody currently manages the team Airtable, so `server/api/team.ts` has a short `hiddenNames` list (first and last name) that hides people from the site (as of October 2026: Shane Jones). Once someone updates Airtable, remove the name from that list.
+  - Team members can also be added in code: `server/data/team.ts` lists people not in Airtable (as of November 2026: Reid Erickson). Their photos live in `public/team/`. Remove a person from that list once they're added to Airtable.
   - The private preview cannot reach Airtable, so the Portfolio and Meet the Team pages look empty there. That is expected; say so when showing screenshots of those pages.
 
 ## Known differences between the guide and the live site

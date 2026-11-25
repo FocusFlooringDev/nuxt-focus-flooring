@@ -1,4 +1,5 @@
 import Airtable from 'airtable'
+import { codeTeam } from '../data/team'
 
 // Team members hidden from the site even if Airtable still marks them "live".
 // Remove a name once their Airtable row is updated.
@@ -7,7 +8,7 @@ const hiddenNames = ['shane jones']
 export default defineEventHandler(async () => {
 	if (!process.env.AIRTABLE_TOKEN) {
 		console.error('Missing AIRTABLE_TOKEN')
-		return []
+		return codeTeam
 	}
 
 	Airtable.configure({ apiKey: process.env.AIRTABLE_TOKEN })
@@ -40,9 +41,9 @@ export default defineEventHandler(async () => {
 				email: r.fields.email as string,
 				allowMessage: r.fields.allowMessage as boolean
 			}})
-		return teamMembers
+		return [...teamMembers, ...codeTeam]
 	} catch (err) {
 		console.error(err)
-		return []
+		return codeTeam
 	}
 })

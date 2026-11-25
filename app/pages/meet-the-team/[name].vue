@@ -65,7 +65,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 				<p class="text-white">{{ TeamMember?.title }}</p>
 			</div>
 			<div class="col-start-1 row-span-2 row-start-2 md:row-start-1">
-				<NuxtImg provider="imagekit" :src="TeamMember?.srcImg" height="437" width="350"
+				<NuxtImg :provider="TeamMember?.srcImg?.startsWith('/') ? undefined : 'imagekit'" :src="TeamMember?.srcImg" height="437" width="350"
 					:alt="`A photo of ${TeamMember?.firstName} ${TeamMember?.lastName} `"
 					class="w-full md:mt-0 rounded-2xl" />
 				<ul class="flex flex-col mt-6">

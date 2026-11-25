@@ -26,7 +26,7 @@ defineEmits(['open', 'close'])
 
 <template>
 	<div class="" :data-index="dataIndex">
-		<NuxtImg provider="imagekit" class="rounded-lg" :src="srcImg" quality="80"
+		<NuxtImg :provider="srcImg?.startsWith('/') ? undefined : 'imagekit'" class="rounded-lg" :src="srcImg" quality="80"
 			:alt="'Photo of ' + firstName + ' ' + lastName" format="webp" height="410" width="328"
 			sizes="155px md:351px lg:328px" />
 		<h3 class="mt-2"> {{ firstName }} {{ lastName }} </h3>
