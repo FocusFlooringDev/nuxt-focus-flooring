@@ -1,6 +1,8 @@
 <script setup lang="ts">
 	type Slide = {
 		project: string
+		// Portfolio project the slide opens, if it is in the Portfolio
+		slug?: string
 		sector: string
 		gc: string
 		type: 'split' | 'single' | 'duo' | 'coming-soon'
@@ -18,6 +20,7 @@
 	const slides: Slide[] = [
 		{
 			project: 'Tampa International Airport—MTC Blue Side and CIP',
+			slug: 'tpa-mtc-blue-side-cip',
 			sector: 'Aviation',
 			gc: 'Hensel Phelps',
 			type: 'split',
@@ -28,6 +31,7 @@
 		},
 		{
 			project: 'Tampa International Airport—MTC Blue Side and CIP',
+			slug: 'tpa-mtc-blue-side-cip',
 			sector: 'Aviation',
 			gc: 'Hensel Phelps',
 			type: 'single',
@@ -47,6 +51,7 @@
 		},
 		{
 			project: 'Jule F. Sumner High School',
+			slug: 'jule-f-sumner-high-school',
 			sector: 'K–12 Education',
 			gc: 'CORE Construction and HORUS',
 			type: 'split',
@@ -57,6 +62,7 @@
 		},
 		{
 			project: 'Jule F. Sumner High School',
+			slug: 'jule-f-sumner-high-school',
 			sector: 'K–12 Education',
 			gc: 'CORE Construction and HORUS',
 			type: 'single',
@@ -65,6 +71,7 @@
 		},
 		{
 			project: 'Moffitt Speros',
+			slug: 'moffitt-speros',
 			sector: 'Healthcare',
 			gc: 'Whiting-Turner and Foresight',
 			type: 'split',
@@ -75,6 +82,7 @@
 		},
 		{
 			project: 'Moffitt Speros',
+			slug: 'moffitt-speros',
 			sector: 'Healthcare',
 			gc: 'Whiting-Turner and Foresight',
 			type: 'single',
@@ -83,6 +91,7 @@
 		},
 		{
 			project: 'BayCare Carrollwood',
+			slug: 'baycare-carrollwood',
 			sector: 'Healthcare',
 			gc: 'DeAngelis Diamond',
 			type: 'split',
@@ -93,6 +102,7 @@
 		},
 		{
 			project: 'BayCare Carrollwood',
+			slug: 'baycare-carrollwood',
 			sector: 'Healthcare',
 			gc: 'DeAngelis Diamond',
 			type: 'duo',
@@ -103,6 +113,7 @@
 		},
 		{
 			project: 'Heron Tampa at Water Street',
+			slug: 'heron-tampa-at-water-street',
 			sector: 'Multi-Family',
 			gc: 'Coastal',
 			type: 'split',
@@ -113,6 +124,7 @@
 		},
 		{
 			project: 'Heron Tampa at Water Street',
+			slug: 'heron-tampa-at-water-street',
 			sector: 'Multi-Family',
 			gc: 'Coastal',
 			type: 'single',
@@ -121,6 +133,7 @@
 		},
 		{
 			project: 'Cora at Water Street',
+			slug: 'cora-at-water-street',
 			sector: 'Multi-Family',
 			gc: 'Moss',
 			type: 'single',
@@ -129,6 +142,7 @@
 		},
 		{
 			project: 'Cora at Water Street',
+			slug: 'cora-at-water-street',
 			sector: 'Multi-Family',
 			gc: 'Moss',
 			type: 'single',
@@ -137,6 +151,7 @@
 		},
 		{
 			project: 'USF Indoor Performance Facility',
+			slug: 'usf-indoor-performance-facility',
 			sector: 'Higher Education',
 			gc: 'RR Simmons',
 			type: 'single',
@@ -145,6 +160,7 @@
 		},
 		{
 			project: 'USF Indoor Performance Facility',
+			slug: 'usf-indoor-performance-facility',
 			sector: 'Higher Education',
 			gc: 'RR Simmons',
 			type: 'single',
@@ -254,10 +270,26 @@
 				</div>
 			</template>
 
+			<NuxtLink
+				v-if="slide.slug"
+				class="slide-link"
+				:to="`/portfolio?project=${slide.slug}`"
+				:aria-label="`View ${slide.project} in the portfolio`"
+				:tabindex="i === active ? 0 : -1"
+			/>
+
 			<div class="caption">
 				<span class="caption-sector">{{ slide.sector }}</span>
 				<span class="caption-project">{{ slide.project }}</span>
 				<span class="caption-gc">GC · {{ slide.gc }}</span>
+				<NuxtLink
+					v-if="slide.slug"
+					class="caption-link"
+					:to="`/portfolio?project=${slide.slug}`"
+					:tabindex="i === active ? 0 : -1"
+				>
+					View project →
+				</NuxtLink>
 			</div>
 		</div>
 
@@ -410,6 +442,24 @@
 		font-size: clamp(16px, 1.5vw, 24px);
 		letter-spacing: 0.06em;
 		color: #f1f1f1;
+	}
+
+	.slide-link {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+	}
+
+	.caption-link {
+		margin-top: 4px;
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--focus-yellow);
+	}
+
+	.caption-link:hover,
+	.caption-link:focus-visible {
+		text-decoration: underline;
 	}
 
 	.caption {

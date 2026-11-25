@@ -56,6 +56,9 @@ type Project = {
   date?: Date;
 };
 
+// A slideshow photo links here as /portfolio?project=<slug> to open that project
+const openProject = route.query.project as string | undefined;
+
 const { data: projects } = await useFetch("/api/projects",{
 		key: 'projects'
 }); 
@@ -106,7 +109,12 @@ const catagories = computed(() => {
               'text-gray-900 dark:text-white text-xl font-semibold group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200',
           }"
         >
-          <ProjectCard v-for="item in filteredProjects" v-bind="item" />
+          <ProjectCard
+            v-for="item in filteredProjects"
+            :key="item.id"
+            v-bind="item"
+            :auto-open="!!openProject && item.slug === openProject"
+          />
         </UBlogList>
       </main>
     </div>

@@ -181,6 +181,8 @@ Use only these colors. Any other color is unauthorized. Never change or adjust t
 - **Portfolio projects and team members come from Airtable, not the code.**
   - Projects show on the site when their Airtable row is marked "live". Project photos come from ImageKit.
   - To add, remove, or edit a project or team member, the person should update Airtable. Do not try to change these in the code.
+  - Projects can also be added in code: `server/data/portfolio.ts` lists projects that are not in Airtable (with their photo galleries) and extra gallery photos for Airtable projects. Gallery photos live in `public/portfolio/<project>/01.jpg, 02.jpg, ...` (01 is the cover). Only add completed projects with approved final photos; never show cost or quantities.
+  - Slideshow photos link to their project with `/portfolio?project=<slug>`, which opens that project's pop-up.
   - Exception: nobody currently manages the team Airtable, so `server/api/team.ts` has a short `hiddenNames` list (first and last name) that hides people from the site (as of October 2026: Shane Jones). Once someone updates Airtable, remove the name from that list.
   - The private preview cannot reach Airtable, so the Portfolio and Meet the Team pages look empty there. That is expected; say so when showing screenshots of those pages.
 

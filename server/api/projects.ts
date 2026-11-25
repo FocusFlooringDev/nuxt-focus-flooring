@@ -1,4 +1,5 @@
 import Airtable from 'airtable'
+import { airtableExtras, codeProjects, slugify } from '../data/portfolio'
 
 type image = {
 	id: string
@@ -21,12 +22,14 @@ type Project = {
 	srcImg?: string
 	category?: string
 	date?: string
+	slug?: string
+	gallery?: { src: string; alt: string }[]
 }
 
 export default defineEventHandler(async () => {
 	if (!process.env.AIRTABLE_TOKEN) {
 		console.error('Missing AIRTABLE_TOKEN')
-		return []
+		return codeProjects
 	}
 
 	Airtable.configure({ apiKey: process.env.AIRTABLE_TOKEN })
@@ -48,8 +51,12 @@ export default defineEventHandler(async () => {
 						img = (images[0] as { url: string }).url.replace(/^.{35}/, "https://ik.imagekit.io/focusflooring/");
 					}
 
+					const name = String(project.fields.name ?? '').trim()
+					const extras = airtableExtras[name]
 					projects.push({
 						id: project.id,
+						slug: extras?.slug ?? slugify(name),
+						gallery: extras?.gallery,
 						name: project.fields.name,
 						size: project.fields.size,
 						cost: project.fields.cost,
@@ -60,9 +67,13 @@ export default defineEventHandler(async () => {
 					} as Project)
 				}
 			}
-			return projects
+			// Projects added in code are listed first
+			return [...codeProjects, ...projects]
 		})
-		.catch((error) => console.log(error))
+		.catch((error) => {
+			console.log(error)
+			return codeProjects
+		})
 
 	
 
