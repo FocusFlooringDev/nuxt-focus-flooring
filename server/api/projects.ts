@@ -59,7 +59,6 @@ export default defineEventHandler(async () => {
 						gallery: extras?.gallery,
 						name: project.fields.name,
 						size: project.fields.size,
-						cost: project.fields.cost,
 						client: project.fields.client,
 						scope: project.fields.scope,
 						srcImg: img,
